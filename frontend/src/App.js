@@ -9,6 +9,7 @@ import actions from "./services/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import LogOut from './components/auth/LogOut'
+import Navbar from './components/navbar/Navbar'
 
 class App extends Component {
   state = {};
@@ -34,12 +35,13 @@ class App extends Component {
           <NavLink to="/">Home |</NavLink>
 
           {this.state.email ? (
-            <Fragment>
-              <NavLink onClick={this.logOut} to="/">
-                Log Out |
-              </NavLink>
-              <NavLink to="/profile">Profile|</NavLink>
-            </Fragment>
+            // <Fragment>
+            //   <NavLink onClick={this.logOut} to="/">
+            //     Log Out |
+            //   </NavLink>
+            //   <NavLink to="/profile">Profile|</NavLink>
+            // </Fragment>
+            <Navbar/>
           ) : ('')}
         </nav>
         <Switch>
