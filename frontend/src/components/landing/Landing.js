@@ -82,7 +82,7 @@ class DemoCarousel extends Component {
               className="d-block w-100 carousel"
               src={require("../../images/carousel1.jpg")}
             />
-              <h1 id='lauchPad1'>LaunchPad</h1>
+             
           </div>
           <div>
             <img
@@ -90,7 +90,7 @@ class DemoCarousel extends Component {
               className="d-block w-100 carousel"
               src={require("../../images/carousel2.jpg")}
             />
-            <p className="legend">LaunchPad</p>
+           
           </div>
           <div>
             <img
@@ -98,9 +98,49 @@ class DemoCarousel extends Component {
               className="d-block w-100 carousel"
               src={require("../../images/carousel5.jpg")}
             />
-            <p className="legend">LaunchPad</p>
+           
           </div>
         </Carousel>
+      </div>
+      <div className="title2">
+          <h3>Work Faster and More Efficiently with</h3>
+         <h1 id='lauchPad'>LaunchPad</h1>
+          <div className="title">
+      <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src={require("../../images/carousel1.jpg")} alt="logo" />
+                </div>
+                <div class="flip-card-back">
+                  <h1>2</h1>
+                  <p>Choose your department</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src={require("../../images/carousel1.jpg")} alt="logo" />
+                </div>
+                <div class="flip-card-back">
+                  <h1>3</h1>
+                  <p>Navigate to the certain service </p>
+                </div>
+              </div>
+            </div>
+            <div class="flip-card">
+              <div class="flip-card-inner">
+                <div class="flip-card-front">
+                  <img src={require("../../images/carousel1.jpg")} alt="logo" />
+                </div>
+                <div class="flip-card-back">
+                  <h1>3</h1>
+                  <p>You rock it!</p>
+                </div>
+              </div>
+            </div>
+      </div>
       </div>
       </div>
     );
