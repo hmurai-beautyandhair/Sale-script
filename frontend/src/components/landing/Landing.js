@@ -66,49 +66,23 @@
 
 // export default BootstrapCarousel;
 
-// import React, { Component } from "react";
-// import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
-// import { Carousel } from "react-responsive-carousel";
 
-// class DemoCarousel extends Component {
-//   render() {
-//     return (
-//       <Carousel>
-//         <div>
-//           <img
-//             className="d-block w-100 carousel"
-//             src="../../images/carousel5.jpg"
-//           />
-//           <p className="legend">Legend 1</p>
-//         </div>
-//         <div>
-//           <img src="assets/2.jpeg" />
-//           <p className="legend">Legend 2</p>
-//         </div>
-//         <div>
-//           <img src="assets/3.jpeg" />
-//           <p className="legend">Legend 3</p>
-//         </div>
-//       </Carousel>
-//     );
-//   }
-// }
-// export default DemoCarousel;
 import { Carousel } from "react-responsive-carousel";
 import React, { Component } from "react";
-import image from "../../images/carousel1.jpg";
+
 class DemoCarousel extends Component {
   render() {
     return (
+      <div id='car'>
       <div class="carousel-wrapper">
-        <Carousel>
+        <Carousel interval={900} keyboard={false} pauseOnHover={true}>
           <div>
             <img
-              style={{ width: "fitContent", height: "90%" }}
+              style={{ width: "fitContent", height: "90%"}}
               className="d-block w-100 carousel"
               src={require("../../images/carousel1.jpg")}
             />
-            <p className="legend">LaunchPad</p>
+              <h1 id='lauchPad1'>LaunchPad</h1>
           </div>
           <div>
             <img
@@ -120,13 +94,14 @@ class DemoCarousel extends Component {
           </div>
           <div>
             <img
-              style={{ width: "fitContent", height: "90%" }}
+              style={{ width: "fitContent", height: '90%' }}
               className="d-block w-100 carousel"
               src={require("../../images/carousel5.jpg")}
             />
             <p className="legend">LaunchPad</p>
           </div>
         </Carousel>
+      </div>
       </div>
     );
   }

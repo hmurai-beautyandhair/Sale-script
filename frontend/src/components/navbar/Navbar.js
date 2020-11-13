@@ -7,8 +7,9 @@ const Navbar = props => {
     <div id="bar" className="navDone">
       <div className="navBB">
         <Link style={{ textDecoration: "none" }} to="/">
-          <div id="logoNav" className="logoNav2" title="Log Out">
+          <div id="logoNav" className="logoNav2" >
             <img src={require("../../images/logo.png")} alt="profile" />
+            <h1 id='lauchPad'>LaunchPad</h1>
           </div>
         </Link>
       </div>

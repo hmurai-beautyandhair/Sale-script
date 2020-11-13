@@ -29,7 +29,17 @@ const responseGoogle = (props) => {
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLEID}
-      buttonText="Login"
+      render={(renderProps) => {
+        return (
+          <button
+            type="button"
+            onClick={renderProps.onClick}
+            className='auth'
+          >
+            Log In
+          </button>
+        )
+      }}
       onSuccess={onResponse}
       onFailure={onResponse}
       cookiePolicy={"single_host_origin"}

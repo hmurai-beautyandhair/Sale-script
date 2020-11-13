@@ -36,7 +36,17 @@ props.setUser({ ...user.data })
   return (
     <GoogleLogin
       clientId={process.env.REACT_APP_GOOGLEID}
-      buttonText="Signup"
+      render={(renderProps) => {
+        return (
+          <button
+            type="button"
+            onClick={renderProps.onClick}
+            className='auth'
+          >
+            Sign Up
+          </button>
+        )
+      }}
       onSuccess={onResponse}
       onFailure={onResponse}
       cookiePolicy={"single_host_origin"}

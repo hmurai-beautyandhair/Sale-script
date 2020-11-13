@@ -32,19 +32,36 @@ class App extends Component {
       <BrowserRouter>
         <nav>
           {this.state.email ? (
-            // <Fragment>
-            //   <NavLink onClick={this.logOut} to="/">
-            //     Log Out |
-            //   </NavLink>
-            //   <NavLink to="/profile">Profile|</NavLink>
-            // </Fragment>
             <Fragment>
               <Navbar logout={this.logOut} />
             </Fragment>
           ) : (
-            <div style={{ pasition: "absolute" }}>
-              {!this.state.email && <GoogleAuth setUser={this.setUser} />}
-              {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
+           
+
+
+
+
+
+<div className="container5">
+          <div class="panel panel-primary">
+            <div className='firstPage'>
+            <img
+              style={{ width: "fitContent", height: "90%"}}
+              className="d-block w-100 carousel"
+              src={require("../src/images/logo.png")}
+            />
+            <h1 id='lauchPad2'>LaunchPad</h1>
+          </div>
+          <br></br>
+          <br></br>
+          <div className='googleButtons'>
+            <p>
+          {!this.state.email && <GoogleAuth style={{minWidth: '100%', background: 'red'}} setUser={this.setUser} />}
+          </p>
+              <p>{!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}</p>
+              </div>
+      </div>
+            
             </div>
           )}
         </nav>
