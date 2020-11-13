@@ -8,8 +8,8 @@ import Profile from "./components/profile/Profile";
 import actions from "./services/index";
 import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
-import LogOut from './components/auth/LogOut'
-import Navbar from './components/navbar/Navbar'
+import LogOut from "./components/auth/LogOut";
+import Navbar from "./components/navbar/Navbar";
 
 class App extends Component {
   state = {};
@@ -20,7 +20,7 @@ class App extends Component {
     console.log("coolest ");
   }
 
-  setUser = (user) => this.setState(user);
+  setUser = user => this.setState(user);
 
   logOut = async () => {
     let res = await actions.logOut();
@@ -30,10 +30,7 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        {this.state.email}
         <nav>
-          <NavLink to="/">Home |</NavLink>
-
           {this.state.email ? (
             // <Fragment>
             //   <NavLink onClick={this.logOut} to="/">
@@ -41,11 +38,15 @@ class App extends Component {
             //   </NavLink>
             //   <NavLink to="/profile">Profile|</NavLink>
             // </Fragment>
-            <Navbar/>
-          ) : ('')}
+            <Fragment>
+              <Navbar logout={this.logOut} />
+            </Fragment>
+          ) : (
+            ""
+          )}
         </nav>
         <Switch>
-          <Route exact path="/" render={(props) => <Home {...props} />} />
+          <Route exact path="/" render={props => <Home {...props} />} />
           {/* <Route
             exact
             path="/sign-up"
@@ -59,14 +60,13 @@ class App extends Component {
           <Route
             exact
             path="/profile"
-            render={(props) => <Profile {...props} user={this.state} />}
+            render={props => <Profile {...props} user={this.state} />}
           />
 
           <Route component={NotFound} />
         </Switch>
         {!this.state.email && <GoogleAuth setUser={this.setUser} />}
         {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
-      
       </BrowserRouter>
     );
   }

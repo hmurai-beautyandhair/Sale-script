@@ -2,18 +2,16 @@ import React from "react";
 
 import { Link } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = props => {
   return (
     <div id="bar" className="navDone">
-      <Link style={{ textDecoration: "none" }} to="/">
-
-        <div id="logoNav" className="logoNav2" title="Log Out">
-        <img
-                  src={require("../../images/logo.png")}
-                  alt="profile"
-                />
-        </div>
-      </Link>
+      <div className="navBB">
+        <Link style={{ textDecoration: "none" }} to="/">
+          <div id="logoNav" className="logoNav2" title="Log Out">
+            <img src={require("../../images/logo.png")} alt="profile" />
+          </div>
+        </Link>
+      </div>
       <nav role="navigation">
         <div id="menuToggle">
           <input type="checkbox" />
@@ -44,7 +42,6 @@ const Navbar = () => {
             <Link style={{ textDecoration: "none" }} to="/sales">
               <div className="nav-links">
                 <img
-                 
                   src={require("../../images/sales_icon.png")}
                   alt="searchJob"
                 />
@@ -53,18 +50,28 @@ const Navbar = () => {
             </Link>
             <Link style={{ textDecoration: "none" }} to="/inventory">
               <div className="nav-links">
-                <img src={require("../../images/inventory_icon.png")} alt="company" />
+                <img
+                  src={require("../../images/inventory_icon.png")}
+                  alt="company"
+                />
                 <p>Inventory</p>
               </div>
             </Link>
             <Link style={{ textDecoration: "none" }} to="/marketing">
               <div className="nav-links">
-                <img src={require("../../images/marketing_icon.png")} alt="postJob" />
+                <img
+                  src={require("../../images/marketing_icon.png")}
+                  alt="postJob"
+                />
                 <p>Marketing</p>
               </div>
             </Link>
 
-            <Link style={{ textDecoration: "none" }} to="/contact">
+            <Link
+              style={{ textDecoration: "none" }}
+              onClick={props.logout}
+              to="/"
+            >
               <div className="nav-links">
                 <img
                   id="contact"
@@ -82,7 +89,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-
-
-
