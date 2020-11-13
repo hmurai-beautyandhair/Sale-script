@@ -42,11 +42,18 @@ class App extends Component {
               <Navbar logout={this.logOut} />
             </Fragment>
           ) : (
-            ""
+            <div style={{ pasition: "absolute" }}>
+              {!this.state.email && <GoogleAuth setUser={this.setUser} />}
+              {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
+            </div>
           )}
         </nav>
         <Switch>
-          <Route exact path="/" render={props => <Home {...props} />} />
+          {this.state.email ? (
+            <Route exact path="/" render={props => <Home {...props} />} />
+          ) : (
+            ""
+          )}
           {/* <Route
             exact
             path="/sign-up"
@@ -62,11 +69,7 @@ class App extends Component {
             path="/profile"
             render={props => <Profile {...props} user={this.state} />}
           />
-
-          <Route component={NotFound} />
         </Switch>
-        {!this.state.email && <GoogleAuth setUser={this.setUser} />}
-        {!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}
       </BrowserRouter>
     );
   }

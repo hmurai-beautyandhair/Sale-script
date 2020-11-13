@@ -104,19 +104,27 @@ class DemoCarousel extends Component {
         <Carousel>
           <div>
             <img
-              style={{ width: "fitContent", height: "100%" }}
+              style={{ width: "fitContent", height: "90%" }}
               className="d-block w-100 carousel"
               src={require("../../images/carousel1.jpg")}
             />
-            <p className="legend">Legend 3</p>
+            <p className="legend">LaunchPad</p>
           </div>
           <div>
-            <img className="d-block w-100" src={image} alt="Third slide" />
-            <p className="legend">Legend 2</p>
+            <img
+              style={{ width: "fitContent", height: "90%" }}
+              className="d-block w-100 carousel"
+              src={require("../../images/carousel2.jpg")}
+            />
+            <p className="legend">LaunchPad</p>
           </div>
           <div>
-            <img src="assets/3.jpeg" />
-            <p className="legend">Legend 3</p>
+            <img
+              style={{ width: "fitContent", height: "90%" }}
+              className="d-block w-100 carousel"
+              src={require("../../images/carousel5.jpg")}
+            />
+            <p className="legend">LaunchPad</p>
           </div>
         </Carousel>
       </div>

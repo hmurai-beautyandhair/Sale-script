@@ -274,8 +274,28 @@ img {
   padding: 0 !important;
   overflow: hidden;
   background: #ece7d5;
+  display: none !important;
 }
 nav {
   padding: 0;
   margin: 0;
+}
+/* .carousel .slide .legend {
+  transition: none !important;
+  position: absolute;
+  bottom: 50% !important;
+  left: 60% !important;
+  margin-left: -45%;
+  width: 90%;
+  border-radius: 10px;
+  background: linear-gradient(#ffffffe6, #fff0) !important;
+  color: #fff;
+  padding: 10px;
+  font-size: 3em !important;
+  text-align: center;
+  opacity: 1 !important;
+  width: 30% !important;
+} */
+.carousel .slide .legend {
+  visibility: hidden !important;
 }
