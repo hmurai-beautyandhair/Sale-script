@@ -11,6 +11,7 @@ import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import LogOut from "./components/auth/LogOut";
 import Navbar from "./components/navbar/Navbar";
 import Draft from "./components/sales/Draft";
+import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 class App extends Component {
   state = {};

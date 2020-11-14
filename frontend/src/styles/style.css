@@ -304,31 +304,29 @@ nav {
 .w-100 {
   width: 50% !important;
 }
-.carousel{
+.carousel {
   height: 100% !important;
   max-height: 100vh !important;
-
 }
 .carousel .slide {
-  
   min-height: 60% !important;
   max-height: 60% !important;
-height: 60% !important;
+  height: 60% !important;
   margin: 0;
-  
-width: 50% !important;
+
+  width: 50% !important;
   position: relative;
   text-align: center;
   background: #000;
 }
-#lauchPad{
-  color:rgb(59, 59, 59);
-  font-family: 'Playball', cursive;
+#lauchPad {
+  color: rgb(59, 59, 59);
+  font-family: "Playball", cursive;
   font-weight: 500;
   font-size: 3.4em;
 }
-#car{
-  background-color:  #ece7d5;
+#car {
+  background-color: #ece7d5;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -336,10 +334,7 @@ width: 50% !important;
   padding: 0 3em 3em;
 }
 
-
-
 /* -------------signin------------------- */
-
 
 .container5 {
   max-width: 320px;
@@ -352,58 +347,60 @@ width: 50% !important;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color:  #ece7d5;
+  background-color: #ece7d5;
 }
 
-#lauchPad2{
+#lauchPad2 {
   color: rgb(141, 135, 111);
-  font-family: 'Playball', cursive;
+  font-family: "Playball", cursive;
   font-weight: 500;
   font-size: 3em;
 }
 
-.firstPage{
+.firstPage {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.googleButtons{
+.googleButtons {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
-
-.auth{
+.auth {
   background-color: white;
   width: 100%;
- font-size: 1.3em;
- padding: 0.3em 2em;
+  font-size: 1.3em;
+  padding: 0.3em 2em;
   border: 1px solid white;
-  color:  rgb(141, 135, 111);
+  color: rgb(141, 135, 111);
 }
-.googleButtons p{
+.googleButtons p {
   width: 100%;
 }
 
-button:hover{border:1px solid rgb(141, 135, 111) !important;}
+button:hover {
+  border: 1px solid rgb(141, 135, 111) !important;
+}
 
-button:focus{background-color: 1px solid rgb(141, 135, 111) !important;}
-button:active{background-color: 1px solid rgb(141, 135, 111) !important;}
-
+button:focus {
+  background-color: 1px solid rgb(141, 135, 111) !important;
+}
+button:active {
+  background-color: 1px solid rgb(141, 135, 111) !important;
+}
 
 /* -------------signin------------------- */
 
-
 /*----------landing-----------------*/
-
 
 .flip-card {
   background-color: transparent;
   height: 50vw;
-  width: 60vw;
+  width: 65vw;
   perspective: 1000px;
 }
 
@@ -437,12 +434,12 @@ button:active{background-color: 1px solid rgb(141, 135, 111) !important;}
 
 .flip-card-back {
   background-color: #ece7d5;
-  color:black;
+  color: black;
   transform: rotateY(180deg);
 }
 .flip-card-front img {
   height: 55vw;
-  width: 60vw;
+  width: 65vw;
 }
 .flip-card p {
   margin: auto;
@@ -470,10 +467,7 @@ button:active{background-color: 1px solid rgb(141, 135, 111) !important;}
   align-items: center;
 }
 
-
 @media only screen and (min-width: 1500px) {
-
-
   .text p {
     font-size: 2.6vh;
   }
@@ -490,14 +484,14 @@ button:active{background-color: 1px solid rgb(141, 135, 111) !important;}
 
   .flip-card {
     background-color: transparent;
-    height: 20vw;
-    width: 19vw;
+    height: 19vw;
+    width: 22vw;
     perspective: 1000px;
   }
 
   .flip-card-front img {
-    height: 20vw;
-    width: 19vw;
+    height: 19vw;
+    width: 22vw;
   }
   .flip-card p {
     margin: auto;
@@ -529,5 +523,29 @@ button:active{background-color: 1px solid rgb(141, 135, 111) !important;}
     display: flex;
 
     flex-direction: row;
+  }
+}
+.table td {
+  text-align: center;
+}
+.table th {
+  text-align: center;
+  color: #8d876f !important;
+  font-size: 1.1em;
+  text-decoration: 1px solid #8d876f !important;
+}
+a {
+  color: #8d876f !important;
+  font-weight: 700;
+}
+.draft {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 7em 1em 1em;
+}
+@media only screen and (min-width: 769px) {
+  .draft {
+    padding: 12em 10em 3em;
   }
 }

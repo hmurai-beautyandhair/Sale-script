@@ -78,25 +78,27 @@ export default function Draft(props) {
     const fetchData = async () => {
       const result = await actions.draft();
       setData(result.data);
-      console.log(result.data);
+      //   console.log(result.data);
     };
 
     fetchData();
   }, []);
 
   return (
-    <div style={{ width: "100%" }}>
-      <Table>
-        <Thead>
+    <div className="draft">
+      <Table className="table table-striped table-bordered ">
+        <Thead className="thead-light">
           <Tr>
-            <Th>#</Th>
-            <Th>Order</Th>
-            <Th>Customer</Th>
-            <Th>Email</Th>
+            <Th scope="col">#</Th>
+            <Th scope="col">Client</Th>
+            <Th scope="col">Draft order</Th>
+            <Th scope="col">Email</Th>
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((x, i) => {
+          {console.log(data)}
+          {console.log("r", data.reverse())}
+          {data.slice(0, 20).map((x, i) => {
             let client = "";
             let last_name = "";
             let first_name = "";
@@ -109,14 +111,35 @@ export default function Draft(props) {
               email = x.customer.email;
             }
             return (
-              <a href={x.invoice_url} target="_blank">
-                <Tr key={i} style={{ background: "red" }}>
-                  <Td>{i}</Td>
-                  <Td>{x.order_id}</Td>
-                  <Td>{client}</Td>
-                  <Td>{email}</Td>
-                </Tr>
-              </a>
+              <Tr>
+                <Td scope="row">
+                  {" "}
+                  <a href={x.invoice_url} target="_blank">
+                    {i + 1}{" "}
+                  </a>
+                </Td>
+
+                <Td>
+                  {" "}
+                  <a href={x.invoice_url} target="_blank">
+                    {client}{" "}
+                  </a>
+                </Td>
+
+                <Td>
+                  {" "}
+                  <a href={x.invoice_url} target="_blank">
+                    {x.order_id}{" "}
+                  </a>
+                </Td>
+
+                <Td>
+                  {" "}
+                  <a href={x.invoice_url} target="_blank">
+                    {email}
+                  </a>
+                </Td>
+              </Tr>
             );
           })}
         </Tbody>
