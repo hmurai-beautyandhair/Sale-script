@@ -10,6 +10,7 @@ import GoogleAuth from "./components/auth/GoogleAuth";
 import GoogleAuthLogin from "./components/auth/GoogleAuthLogin";
 import LogOut from "./components/auth/LogOut";
 import Navbar from "./components/navbar/Navbar";
+import Draft from "./components/sales/Draft";
 
 class App extends Component {
   state = {};
@@ -36,32 +37,34 @@ class App extends Component {
               <Navbar logout={this.logOut} />
             </Fragment>
           ) : (
-           
-
-
-
-
-
-<div className="container5">
-          <div class="panel panel-primary">
-            <div className='firstPage'>
-            <img
-              style={{ width: "fitContent", height: "90%"}}
-              className="d-block w-100 carousel"
-              src={require("../src/images/logo.png")}
-            />
-            <h1 id='lauchPad2'>LaunchPad</h1>
-          </div>
-          <br></br>
-          <br></br>
-          <div className='googleButtons'>
-            <p>
-          {!this.state.email && <GoogleAuth style={{minWidth: '100%', background: 'red'}} setUser={this.setUser} />}
-          </p>
-              <p>{!this.state.email && <GoogleAuthLogin setUser={this.setUser} />}</p>
+            <div className="container5">
+              <div class="panel panel-primary">
+                <div className="firstPage">
+                  <img
+                    style={{ width: "fitContent", height: "90%" }}
+                    className="d-block w-100 carousel"
+                    src={require("../src/images/logo.png")}
+                  />
+                  <h1 id="lauchPad2">LaunchPad</h1>
+                </div>
+                <br></br>
+                <br></br>
+                <div className="googleButtons">
+                  <p>
+                    {!this.state.email && (
+                      <GoogleAuth
+                        style={{ minWidth: "100%", background: "red" }}
+                        setUser={this.setUser}
+                      />
+                    )}
+                  </p>
+                  <p>
+                    {!this.state.email && (
+                      <GoogleAuthLogin setUser={this.setUser} />
+                    )}
+                  </p>
+                </div>
               </div>
-      </div>
-            
             </div>
           )}
         </nav>
@@ -85,6 +88,11 @@ class App extends Component {
             exact
             path="/profile"
             render={props => <Profile {...props} user={this.state} />}
+          />
+          <Route
+            exact
+            path="/draft"
+            render={props => <Draft {...props} user={this.state} />}
           />
         </Switch>
       </BrowserRouter>
