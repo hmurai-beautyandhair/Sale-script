@@ -1,68 +1,4 @@
-// import React, { Component } from "react";
-// import actions from "../../services/index";
-// import Table from "react-bootstrap/Table";
-// class Draft extends Component {
-//   state = {
-//     arr: []
-//   };
-//   componentDidMount() {
-//     actions
-//       .draft()
-//       .then(res => {
-//         console.log(res);
-//         this.setState({
-//           arr: res.data
-//         });
-//       })
-//       .catch(({ response }) => console.error(response));
-//   }
-//   print = () => {
-//     return (
-//       <Table striped bordered hover size="sm">
-//         <thead>
-//           <tr>
-//             <th>#</th>
-//             <th>Cusromer</th>
-//             <th>Order</th>
-//             <th>Email</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           <tr>
-//             <td>1</td>
-//             <td>Mark</td>
-//             <td>Otto</td>
-//             <td>@mdo</td>
-//           </tr>
-//         </tbody>
-//       </Table>
-//     );
-//   };
-//   render() {
-//     return (
-//       <div>
-//         <Table striped bordered hover size="sm">
-//           <thead>
-//             <tr>
-//               <th>#</th>
-//               <th>Cusromer</th>
-//               <th>Order</th>
-//               <th>Email</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             <tr>
-//               <td>1</td>
-//               <td>Mark</td>
-//               <td>Otto</td>
-//               <td>@mdo</td>
-//             </tr>
-//           </tbody>
-//         </Table>
-//       </div>
-//     );
-//   }
-// }
+
 
 import React, { useState, useEffect } from "react";
 import { Table, Thead, Tbody, Tr, Th, Td } from "react-super-responsive-table";
@@ -97,9 +33,7 @@ export default function Draft(props) {
           </Tr>
         </Thead>
         <Tbody>
-          {console.log(data)}
-
-         
+      
        {data.reverse().slice(0, 20).map((x, i) => {
             let client = "";
             let last_name = "";

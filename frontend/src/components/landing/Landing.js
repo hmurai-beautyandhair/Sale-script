@@ -23,20 +23,20 @@ class DemoCarousel extends Component {
               <img
                 style={{ width: "fitContent", height: "90%" }}
                 className="d-block w-100 carousel"
-                src={require("../../images/carousel2.jpg")}
+                src={require("../../images/landing2.jpg")}
               />
             </div>
             <div>
               <img
                 style={{ width: "fitContent", height: "90%" }}
                 className="d-block w-100 carousel"
-                src={require("../../images/carousel5.jpg")}
+                src={require("../../images/landing3.jpg")}
               />
             </div>
           </Carousel>
         </div>
         <div className="title2">
-          <h3>work faster and more efficiently with</h3>
+          <h3>Work faster and more efficiently with</h3>
           <h1>LaunchPad</h1>
           <div className="title">
             <div class="flip-card">

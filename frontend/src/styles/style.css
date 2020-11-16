@@ -306,7 +306,7 @@ nav {
 }
 .carousel {
   height: 100% !important;
-  max-height: 100vh !important;
+ 
 }
 .carousel .slide {
   min-height: 60% !important;
@@ -331,7 +331,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 1em 3em 3em;
+  padding: 3.5em 3em 3em;
 }
 
 /* -------------signin------------------- */
@@ -564,7 +564,7 @@ a {
   text-align: center;
   align-items: center;
   padding: 4em 3em 3em;
-  color: #8d876f;
+  color:black;
 }
 .title2 h1{
   padding-bottom: 1em;
