@@ -331,7 +331,7 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 3em 3em;
+  padding: 1em 3em 3em;
 }
 
 /* -------------signin------------------- */
@@ -435,15 +435,19 @@ button:active {
 .flip-card-back {
   background-color: #ece7d5;
   color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   transform: rotateY(180deg);
+  font-family: "Playball", cursive;
 }
 .flip-card-front img {
   height: 55vw;
   width: 65vw;
 }
 .flip-card p {
-  margin: auto;
-  padding: auto;
+  margin:0;
+  padding: 0;
   font-size: 5vw;
   text-align: center;
 }
@@ -453,9 +457,9 @@ button:active {
   font-size: 5vw;
   color: rgb(23, 68, 164);
 }
-.flip-card h1 {
+.flip-card h3 {
   margin: auto;
-  padding: auto;
+  
   font-size: 10vw;
   text-align: center;
   margin: 10vw 0 0;
@@ -494,9 +498,9 @@ button:active {
     width: 22vw;
   }
   .flip-card p {
-    margin: auto;
-    padding: auto;
-    font-size: 1.9vw;
+    margin: 0;
+    padding: 0;
+    font-size: 2.3vw;
     text-align: center;
     max-width: 90%;
   }
@@ -506,12 +510,13 @@ button:active {
     font-size: 2.5vw;
     color: rgb(23, 68, 164);
   }
-  .flip-card h1 {
-    margin: auto;
-    padding: auto;
-    font-size: 7vw;
+  .flip-card h3 {
+   
+    padding-top: 1em;
+    font-size: 3.5vw;
     text-align: center;
-    margin: 2vw 0 0;
+    margin: 0;
+    padding-bottom: 0;
   }
   .flip-card {
     display: flex;
@@ -544,8 +549,30 @@ a {
   align-items: center;
   padding: 7em 1em 1em;
 }
+#tracker{
+  color: #5f5b4b;
+  padding: 0.5em;
+  text-align: center;
+  letter-spacing: 6px;
+
+}
+.title2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  align-items: center;
+  padding: 4em 3em 3em;
+  color: #8d876f;
+}
+.title2 h1{
+  padding-bottom: 1em;
+  
+}
 @media only screen and (min-width: 769px) {
   .draft {
     padding: 12em 10em 3em;
   }
+  
 }

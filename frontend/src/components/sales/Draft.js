@@ -86,6 +86,7 @@ export default function Draft(props) {
 
   return (
     <div className="draft">
+      <h1 id='tracker'>Draft Order<br></br> TRACKER</h1>
       <Table className="table table-striped table-bordered ">
         <Thead className="thead-light">
           <Tr>
@@ -97,8 +98,9 @@ export default function Draft(props) {
         </Thead>
         <Tbody>
           {console.log(data)}
-          {console.log("r", data.reverse())}
-          {data.slice(0, 20).map((x, i) => {
+
+         
+       {data.reverse().slice(0, 20).map((x, i) => {
             let client = "";
             let last_name = "";
             let first_name = "";
@@ -108,9 +110,10 @@ export default function Draft(props) {
               email = "Undefined";
             } else {
               client = x.customer.first_name + " " + x.customer.last_name;
-              email = x.customer.email;
+              email = x.email;
             }
-            return (
+         
+              return (
               <Tr>
                 <Td scope="row">
                   {" "}
@@ -129,7 +132,7 @@ export default function Draft(props) {
                 <Td>
                   {" "}
                   <a href={x.invoice_url} target="_blank">
-                    {x.order_id}{" "}
+                   {x.name}
                   </a>
                 </Td>
 
@@ -140,11 +143,14 @@ export default function Draft(props) {
                   </a>
                 </Td>
               </Tr>
-            );
-          })}
+            )
+          })
+        }
         </Tbody>
       </Table>
-      {console.log("data", data[0]?.id)}
+    
+
+
     </div>
   );
 }
