@@ -18,6 +18,7 @@ class DemoCarousel extends Component {
                 className="d-block w-100 carousel"
                 src={require("../../images/carousel1.jpg")}
               />
+              
             </div>
             <div>
               <img

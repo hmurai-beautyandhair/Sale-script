@@ -40,7 +40,7 @@ const Navbar = props => {
                 <p>New Hire</p>
               </div>
             </Link>
-            <Link style={{ textDecoration: "none" }} to="/draft">
+            <Link style={{ textDecoration: "none" }} to="/sales">
               <div className="nav-links">
                 <img
                   src={require("../../images/sales_icon.png")}

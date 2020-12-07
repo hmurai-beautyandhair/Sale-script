@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/FTWD-OCT-2019/ironplate#readme",
   "dependencies": {
+    "@shopify/polaris": "^5.11.0",
     "bootstrap": "^4.5.3",
     "react-bootstrap": "^1.4.0"
   }

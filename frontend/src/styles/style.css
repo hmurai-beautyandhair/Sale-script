@@ -471,7 +471,7 @@ button:active {
   align-items: center;
 }
 
-@media only screen and (min-width: 1500px) {
+@media only screen and (min-width: 1200px) {
   .text p {
     font-size: 2.6vh;
   }
@@ -574,5 +574,23 @@ a {
   .draft {
     padding: 12em 10em 3em;
   }
+  
+}
+
+.container-image{
+  position: relative;
+  text-align: center;
+  color: black;
+  width: 100%;
+
+}
+.centered {
+  position: absolute;
+  top: 92%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+border: 1px linear-gradient(#ffffff, rgb(240, 238, 234)) solid;
+background: linear-gradient(#ffffff, rgb(236, 231, 220));
+
   
 }
