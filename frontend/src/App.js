@@ -216,16 +216,18 @@ import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 
 
 import React, {useCallback, useRef, useState, useEffect} from 'react';
-import {AppProvider, Avatar, ActionList, Card, TextField, TextContainer, ContextualSaveBar, FormLayout, Modal, Frame, Layout, Loading, Navigation, Page, SkeletonBodyText, SkeletonDisplayText, SkeletonPage, Toast, TopBar} from '@shopify/polaris';
-import {ArrowLeftMinor, ConversationMinor, HomeMajor, OrdersMajor} from '@shopify/polaris-icons';
+import {AppProvider, Avatar, ActionList, Card, TextField, TextContainer, ContextualSaveBar, 
+  FormLayout, Modal, Frame, Layout, Loading, Navigation, Page, SkeletonBodyText, SkeletonDisplayText, SkeletonPage, Toast, TopBar, MediaCard, ButtonGroup, CalloutCard, PageActions, DisplayText, Stack} from '@shopify/polaris';
+import {CartMajor,HomeMajor, OrdersMajor, MarketingMajor,  MonerisMajor, GamesConsoleMajor, JobsMajor, LockMajor, InventoryMajor} from '@shopify/polaris-icons';
 import Draft from "./components/sales/Draft";
 import Sale from "./components/sales/Sale";
+import Home from './components/home/Home'
  import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 
 export default function FrameExample() {
   const defaultState = useRef({
-    emailFieldValue: 'dharma@jadedpixel.com',
-    nameFieldValue: 'Jaded Pixel',
+    emailFieldValue: 'nnn',
+    nameFieldValue: 'Beauty and Hair',
   });
   const skipToContentRef = useRef(null);
 
@@ -252,6 +254,7 @@ export default function FrameExample() {
   const logOut = async () => {
     let res = await actions.logOut();
 setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
+
   };
 
   const [nameFieldValue, setNameFieldValue] = useState(
@@ -352,9 +355,9 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   const userMenuMarkup = (
     <TopBar.UserMenu
       actions={userMenuActions}
-      name="Dharma"
-      detail={storeName}
-      initials="D"
+      name="LaunchPad"
+      detail='Beauty&amp;Hair'
+      initials="L"
       open={userMenuActive}
       onToggle={toggleUserMenuActive}
     />
@@ -392,38 +395,63 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   );
 
   const navigationMarkup = (
-    <Navigation location="/">
-      <Navigation.Section
-        items={[
-          {
-            label: 'Back to Shopify',
-            icon: ArrowLeftMinor,
-          },
-        ]}
-      />
+    <Navigation location="/nav">
+     
       <Navigation.Section
         separator
-        title="Jaded Pixel App"
+        title="Launch Pad"
         items={[
           {
-            url: '/draft',
-            label: 'Dashboard',
+            url: '/home',
+            label: 'Home',
             icon: HomeMajor,
-            onClick: toggleIsLoading,
+           
           },
           {
             url: '/sale',
-            label: 'Jaded Pixel Orders',
-            icon: OrdersMajor,
+            label: 'Sales',
+            icon: CartMajor,
+            onClick: toggleModalActive,
+          },
+          {
+            url: '/inventory',
+            label: 'Inventory',
+            icon: InventoryMajor,
+           
+          },
+          {
+            url: '/marketing',
+            label: 'Marketing',
+            icon: MarketingMajor,
+           
+          },
+          {
+            url: '/new-hire',
+            label: 'New Hire',
+            icon: JobsMajor,
+           
+          },
+          {
+            url: '/accounting',
+            label: 'Accounting',
+            icon:  MonerisMajor,
+           
+          },
+          {
+            url: '/it',
+            label: 'IT',
+            icon:  GamesConsoleMajor,
            
           },
           {
            
             label: 'Log out',
-            icon: OrdersMajor,
+            url: '/',
+            icon: LockMajor,
             onClick: logOut,
            
           },
+
         ]}
         // action={{
         //   icon: ConversationMinor,
@@ -450,13 +478,13 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
           <Card sectioned>
             <FormLayout>
               <TextField
-                label="Full name"
+                label="Title"
                 value={nameFieldValue}
                 onChange={handleNameFieldChange}
               />
               <TextField
-                type="email"
-                label="Email"
+                type="url"
+                label="Link"
                 value={emailFieldValue}
                 onChange={handleEmailFieldChange}
               />
@@ -482,7 +510,7 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
     </SkeletonPage>
   );
 
-  const pageMarkup = isLoading ? <Draft/> : actualPageMarkup;
+  const pageMarkup = isLoading ? loadingPageMarkup : actualPageMarkup;
 
   const modalMarkup = (
     <Modal
@@ -515,23 +543,27 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   const theme = {
     colors: {
       topBar: {
-        background: '#225062',
+        background: '#fff',
+        backgroundLighter: '#F4F6F8',
+        backgroundDarker: '#DFE3E8',
+        border: '#C4CDD5',
+        color: '#212B36',
       },
     },
     logo: {
-      width: 124,
+      width: 250,
       topBarSource:
-        'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-color.svg?6215648040070010999',
+        'https://cdn.shopify.com/s/files/1/2636/2774/files/b_h_lg.png?v=1607446236',
       contextualSaveBarSource:
-        'https://cdn.shopify.com/s/files/1/0446/6937/files/jaded-pixel-logo-gray.svg?6215648040070010999',
-      url: 'http://jadedpixel.com',
-      accessibilityLabel: 'Jaded Pixel',
+        'https://cdn.shopify.com/s/files/1/2636/2774/files/b_h_lg.png?v=1607446236',
+      url: '/',
+      accessibilityLabel: 'Beauty and Hair',
     },
   };
 
   return (
     <div>
-    {state.email ? (
+   
     <div style={{height: '500px'}}>
       <AppProvider
         theme={theme}
@@ -568,6 +600,8 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
           },
         }}
       >
+ {state.email ? (
+
         <Frame
           topBar={topBarMarkup}
           navigation={navigationMarkup}
@@ -597,46 +631,53 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
           />
           <Route
             exact
-            path="/sales"
+            path="/sale"
             render={props => <Sale {...props} user={state} />}
           /> </div> 
             
         
         </Switch>
       </BrowserRouter>
-        </Frame>
-       
-      </AppProvider>
-    </div>) : (<div className="container5">
-    <div class="panel panel-primary">
-      <div className="firstPage">
-        <img
-          style={{ width: "fitContent", height: "90%" }}
+        </Frame>) : (
+
+
+        <Page
+  narrowWidth
+
+>
+  <center><Card  sectioned >
+    <div style={{paddingTop: '2em'}}></div>
+  <img
           className="d-block w-100 carousel"
           src={require("../src/images/logo.png")}
         />
-        <h1 id="lauchPad2">LaunchPad</h1>
-      </div>
-      <br></br>
-      <br></br>
-      <div className="googleButtons">
-        <p>
-          {!state.email && (
-            <GoogleAuth
-              style={{ minWidth: "100%", background: "red" }}
-              setUser={setUser}
-            />
-          )}
-        </p>
-        <p>
-          {!state.email && (
-            <GoogleAuthLogin setUser={setUser} />
-          )}
-        </p>
-      </div>
-    </div>
+       <div style={{  fontWeight: '100', color: '#212b36'}}><DisplayText size="large">LAUCH PAD</DisplayText></div>
+       {/* <Stack distribution="fillEvenly"> */}
+       <div style={{paddingTop: '5em'}}></div>
+       <center>
+  {!state.email && (
+         <GoogleAuthLogin setUser={setUser} />
+       )}
+{!state.email && (
+         <GoogleAuth
+           style={{ minWidth: "100%", background: "red" }}
+           setUser={setUser}
+         />
+         
+       )}
+</center>
+{/* </Stack> */}
+  </Card>
+  </center>
+</Page>
 
-  </div>)}
+
+
+
+)}
+       
+      </AppProvider>
+    </div>
    
          </div> 
        

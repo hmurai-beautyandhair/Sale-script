@@ -1,6 +1,7 @@
 import React from "react";
 import actions from "../../services/index";
 import { GoogleLogin } from "react-google-login";
+import {Button} from '@shopify/polaris';
 
 const responseGoogle = (props) => {
   
@@ -31,13 +32,15 @@ const responseGoogle = (props) => {
       clientId={process.env.REACT_APP_GOOGLEID}
       render={(renderProps) => {
         return (
-          <button
-            type="button"
+         <Button primary
+         fullWidth
+         size='large'
+            type="text"
             onClick={renderProps.onClick}
             className='auth'
           >
             Log In
-          </button>
+          </Button>
         )
       }}
       onSuccess={onResponse}
