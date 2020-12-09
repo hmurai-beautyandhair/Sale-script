@@ -20,7 +20,7 @@ export default function  Sale() {
     //    description: "open2 someting"}]
     const [items, setItems] = useState([])
     const [idS, setIdes] = useState([])
-  
+
 
     useEffect(() => {
         const fetchData = async () => {
@@ -80,6 +80,10 @@ export default function  Sale() {
       
           setItems(newState)
           setshowForm(false)
+          setTitle('')
+          setImage('')
+          setDescription('')
+          setLink('')
           actions.createLink({
             url: link,
             title: title,
@@ -91,6 +95,35 @@ export default function  Sale() {
 
         }
         
+
+        const handleSubmit2 = (id) => {
+
+
+            console.log('ID', id)
+            let newArr = [...idS]
+            console.log('newArr', newArr)
+            newArr.map((x, i) => {
+            if(id in x)  x[id] = false
+            return x
+            })
+            console.log('update', newArr[id])
+            setIdes(newArr)
+            setTitle2('')
+            setImage2('')
+            setDescription2('')
+            setLink2('')
+             actions.update({
+               url: link2,
+               title: title2,
+               image: image2,
+               description: description2
+             }, id).then(res => {
+               console.log(res.data);
+             })
+             window.location.reload()
+
+   
+           }
 
         const toggleForm = ()=>{
             setshowForm(false)
@@ -211,12 +244,11 @@ return(
       <TextStyle variation="strong" ><Link  url={url} external>{title}</Link></TextStyle>
           </h3>
           <div>{description}</div>
-      <div>{_id}</div>
           <Button primary onClick={()=> toggleEdit(_id)}>Edit</Button>
          
         </ResourceItem>
      {check ?  <Page>
-<Form  >
+<Form  onSubmit={() => handleSubmit2(_id)}>
 <FormLayout style={{padding: '2em'}}>
 <FormLayout.Group condensed>
  <TextField
@@ -244,7 +276,7 @@ return(
  />
  </FormLayout.Group>
  <ButtonGroup>
-  <Button primary  disabled={!image || !title || !description || !link} submit>Submit</Button>
+  <Button primary  disabled={!image2 || !title2 || !description2 || !link2} submit>Submit</Button>
   <Button onClick={()=> closeEdit(_id)}>Back</Button>
   </ButtonGroup>
 </FormLayout>

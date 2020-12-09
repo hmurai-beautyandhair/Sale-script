@@ -34,6 +34,9 @@ const actions = {
   list: async () => {
     return await service.get("/all-links");
   },
+  update: async (data, id) => {
+    return await service.post(`/update-list/${id}`, data);
+  },
 };
 
 export default actions;

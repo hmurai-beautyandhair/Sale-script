@@ -60,5 +60,20 @@ router.get("/all-links", (req, res) => {
     .then(links => res.json(links))
     .catch(err => res.status(400).json("Error" + err));
 });
+router.post("/update-list/:id", (req, res) => {
+  Link.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
 
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
 module.exports = router;
