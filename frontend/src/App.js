@@ -611,14 +611,14 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
         >
           {contextualSaveBarMarkup}
           {loadingMarkup}
-          {pageMarkup}
+        
           {toastMarkup}
           {modalMarkup}
           <BrowserRouter>
         
         <Switch>
        
-         <div>
+         <div style={{padding: 0, margin: 0}}>
           <Route
             exact
             path="/profile"

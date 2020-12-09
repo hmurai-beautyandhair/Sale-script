@@ -27,7 +27,13 @@ const actions = {
 
   draft: async () => {
     return await service.get("/draft-order");
-  }
+  },
+  createLink: async link => {
+    return await service.post("/new-link", link);
+  },
+  list: async () => {
+    return await service.get("/all-links");
+  },
 };
 
 export default actions;

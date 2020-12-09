@@ -3,6 +3,7 @@ const Shopify = require("shopify-api-node");
 const axios = require("axios");
 const today = new Date();
 const yesterday = new Date(today);
+const Link = require('../models/Link');
 // yesterday.setDate(yesterday.getDate() - 1)
 const date = new Date()
 console.log(new Date(yesterday.setDate(yesterday.getDate() - 1)))
@@ -33,4 +34,31 @@ router.get("/", (req, res, next) => {
 router.get("/", (req, res, next) => {
   res.status(200).json({ msg: "Working" });
 });
+
+
+router.post("/new-link", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newLink = new Link({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newLink
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links", (req, res) => {
+  Link.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+
 module.exports = router;
