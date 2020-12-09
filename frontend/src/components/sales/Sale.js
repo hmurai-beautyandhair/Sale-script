@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import {Avatar, TextStyle, Card, ResourceItem, ResourceList, Thumbnail, ButtonGroup, Icon, FormLayout, TextField,  Layout, Page, Button, Form, } from '@shopify/polaris';
+import {Link, TextStyle, Card, ResourceItem, ResourceList, Thumbnail, ButtonGroup, Icon, FormLayout, TextField,  Layout, Page, Button, Form, } from '@shopify/polaris';
 import axios from "axios";
 import {AddMajor} from '@shopify/polaris-icons';
 import actions from "../../services/index";
@@ -19,24 +19,34 @@ export default function  Sale() {
     //    image: 'https://burst.shopifycdn.com/photos/black-leather-choker-necklace_373x@2x.jpg',
     //    description: "open2 someting"}]
     const [items, setItems] = useState([])
+    const [idS, setIdes] = useState([])
   
 
     useEffect(() => {
         const fetchData = async () => {
           const result = await actions.list();
           setItems(result.data);
-          //   console.log(result.data);
+           let idS = [] 
+           result.data.forEach(x =>{
+            idS.push({[x._id] : false})
+           })
+           setIdes(idS)
         };
     
         fetchData();
       }, []);
-  
-      const [title, setTitle] = useState('');
       const [showForm, setshowForm] = useState(false);
+      const [showEdit, setshowEdit] = useState(false);
+
+      const [title, setTitle] = useState('');
       const [ image, setImage] = useState('');
       const [ link, setLink] = useState('');
       const [ description, setDescription] = useState('');
-    
+
+    const [title2, setTitle2] = useState('');
+      const [ image2, setImage2] = useState('');
+      const [ link2, setLink2] = useState('');
+      const [ description2, setDescription2] = useState('');
      
 
       const handleTitleChange = useCallback((value) => {
@@ -48,6 +58,16 @@ export default function  Sale() {
         setDescription(value), []);
       const handleLinkChange = useCallback((value) => 
         setLink(value), []);
+
+
+        const handleTitleChange2 = useCallback((value) => {
+          setTitle2(value)}, []);
+        const handleImageChange2 = useCallback((value) => 
+          setImage2(value), []);
+        const handleDescriptionChange2 = useCallback((value) => 
+          setDescription2(value), []);
+        const handleLinkChange2 = useCallback((value) => 
+          setLink2(value), []);
 
         const handleSubmit = () => {
          let newState = [...items, {
@@ -86,6 +106,28 @@ export default function  Sale() {
             setLink('')
             setImage('')
             setDescription('')
+        }
+        const toggleEdit = (id) =>{
+            console.log('ID', id)
+            let newArr = [...idS]
+            console.log('newArr', newArr)
+            newArr.map((x, i) => {
+            if(id in x)  x[id] = true
+            return x
+            })
+            console.log('update', newArr[id])
+            setIdes(newArr)
+        }
+        const closeEdit = (id) =>{
+            console.log('ID', id)
+            let newArr = [...idS]
+            console.log('newArr', newArr)
+            newArr.map((x, i) => {
+            if(id in x)  x[id] = false
+            return x
+            })
+            console.log('update', newArr[id])
+            setIdes(newArr)
         }
        
 const form = 
@@ -129,7 +171,10 @@ const form =
       </Form>
       </Page>
       
-
+    
+      
+      
+      
 
 const addButton = <Card >
 <center>
@@ -148,26 +193,69 @@ return(
     resourceName={{singular: 'customer', plural: 'customers'}}
     items={items}
     renderItem={(item) => {
-      const { url, title, image,  description} = item;
+      const { url, title, image,  description, _id} = item;
       const media = <Thumbnail
       source={image}
       size="large"
-      alt="Black choker necklace"
     />
+   
+    let check = (idS.filter(x => _id in x)[0])?.[_id]
+    console.log( check)
       return (
+          <div>
         <ResourceItem
-          external url={url}
           media={media}
           accessibilityLabel={`View details for ${title}`}
         >
           <h3>
-      <TextStyle variation="strong">{title}</TextStyle>
+      <TextStyle variation="strong" ><Link  url={url} external>{title}</Link></TextStyle>
           </h3>
           <div>{description}</div>
+      <div>{_id}</div>
+          <Button primary onClick={()=> toggleEdit(_id)}>Edit</Button>
+         
         </ResourceItem>
+     {check ?  <Page>
+<Form  >
+<FormLayout style={{padding: '2em'}}>
+<FormLayout.Group condensed>
+ <TextField
+   label="Title"
+   value={title2}
+   onChange={handleTitleChange2}
+ />
+ <TextField
+   type="url"
+   label="Link"
+   value={link2}
+   onChange={handleLinkChange2}
+ />
+  
+ <TextField
+   label="Image"
+   type="url"
+   value={image2}
+   onChange={handleImageChange2}
+ />
+  <TextField
+   label="Description"
+   value={description2}
+   onChange={handleDescriptionChange2}
+ />
+ </FormLayout.Group>
+ <ButtonGroup>
+  <Button primary  disabled={!image || !title || !description || !link} submit>Submit</Button>
+  <Button onClick={()=> closeEdit(_id)}>Back</Button>
+  </ButtonGroup>
+</FormLayout>
+</Form>
+</Page> : ('')}
+            
+        </div>
       );
     }}
   />
+  {console.log(idS)}
 {pageMarkup}
 </Page>
 
