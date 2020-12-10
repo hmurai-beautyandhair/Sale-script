@@ -4,6 +4,12 @@ const axios = require("axios");
 const today = new Date();
 const yesterday = new Date(today);
 const Link = require('../models/Link');
+const Inventory = require('../models/Inventory.model')
+const Marketing = require('../models/Marketing.model')
+const Newhire = require('../models/NewHire.model')
+const Accounting = require('../models/Accounting.model')
+const IT = require('../models/IT.model')
+const EllenWille = require('../models/Ellen.Wille.model')
 // yesterday.setDate(yesterday.getDate() - 1)
 const date = new Date()
 console.log(new Date(yesterday.setDate(yesterday.getDate() - 1)))
@@ -62,6 +68,266 @@ router.get("/all-links", (req, res) => {
 });
 router.post("/update-list/:id", (req, res) => {
   Link.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
+
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+
+//------------INVENTORY------------------
+router.post("/new-link-inventory", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newInventory = new Inventory({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newInventory
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links-inventory", (req, res) => {
+  Inventory.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+router.post("/update-list-inventory/:id", (req, res) => {
+  Inventory.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
+
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+
+//------------MARKETING------------------
+router.post("/new-link-marketing", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newMarketing = new Marketing({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newMarketing
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links-marketing", (req, res) => {
+  Marketing.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+router.post("/update-list-marketing/:id", (req, res) => {
+  Marketing.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
+
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+
+//------------NEWHIRE------------------
+
+router.post("/new-link-newhire", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newNewhire = new Newhire({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newNewhire
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links-newhire", (req, res) => {
+  Newhire.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+router.post("/update-list-newhire/:id", (req, res) => {
+  Newhire.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
+
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+
+//--------------ACCOUNTING------------------
+
+router.post("/new-link-accounting", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newAccounting = new Accounting({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newAccounting
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links-accounting", (req, res) => {
+  Accounting.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+router.post("/update-list-accounting/:id", (req, res) => {
+  Accounting.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
+
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+//--------------------IT------------------
+
+router.post("/new-link-it", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newIT = new IT({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newIT
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links-it", (req, res) => {
+  IT.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+router.post("/update-list-it/:id", (req, res) => {
+  IT.findById(req.params.id)
+    .then(item => {
+      console.log('id', item)
+    item.url = req.body.url;
+ item.title = req.body.title;
+  item.image = req.body.image;
+  item.description = req.body.description;
+
+      item
+        .save()
+        .then(() => res.json("List updated"))
+        .catch(err => res.status(400).json("Error: " + err));
+    })
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+//--------------------ELLEN_WILLE------------------
+
+router.post("/new-link-ellen", (req, res) => {
+  const url = req.body.url;
+  const title = req.body.title;
+  const image = req.body.image;
+  const description = req.body.description;
+
+  const newEllenWille = new EllenWille({
+    url,
+    title,
+    image,
+    description
+  });
+
+  newEllenWille
+    .save()
+    .then(() => res.json("Link added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.get("/all-links-ellen", (req, res) => {
+  EllenWille.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
+});
+router.post("/update-list-ellen/:id", (req, res) => {
+  EllenWille.findById(req.params.id)
     .then(item => {
       console.log('id', item)
     item.url = req.body.url;

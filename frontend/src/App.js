@@ -218,11 +218,17 @@ import "react-super-responsive-table/dist/SuperResponsiveTableStyle.css";
 import React, {useCallback, useRef, useState, useEffect} from 'react';
 import {AppProvider, Avatar, ActionList, Card, TextField, TextContainer, ContextualSaveBar, 
   FormLayout, Modal, Frame, Layout, Loading, Navigation, Page, SkeletonBodyText, SkeletonDisplayText, SkeletonPage, Toast, TopBar, MediaCard, ButtonGroup, CalloutCard, PageActions, DisplayText, Stack} from '@shopify/polaris';
-import {CartMajor,HomeMajor, OrdersMajor, MarketingMajor,  MonerisMajor, GamesConsoleMajor, JobsMajor, LockMajor, InventoryMajor} from '@shopify/polaris-icons';
+import {CartMajor,HomeMajor, OrdersMajor, MarketingMajor,  MonerisMajor, GamesConsoleMajor, JobsMajor, LockMajor, InventoryMajor, LegalMajor} from '@shopify/polaris-icons';
 import Draft from "./components/sales/Draft";
 import Sale from "./components/sales/Sale";
-import Home from './components/home/Home'
+import Inventory from './components/inventory/Inventory'
+import IT from './components/it/IT'
+import Newhire from './components/newhire/Newhire'
+import Accounting from './components/accounting/Accounting'
  import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import Marketing from "./components/marketing/Marketing";
+import Ellen from './components/ellen/Ellen'
+
 
 export default function FrameExample() {
   const defaultState = useRef({
@@ -386,10 +392,10 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
     <TopBar
       showNavigationToggle
       userMenu={userMenuMarkup}
-      searchResultsVisible={searchActive}
-      searchField={searchFieldMarkup}
-      searchResults={searchResultsMarkup}
-      onSearchResultsDismiss={handleSearchResultsDismiss}
+      // searchResultsVisible={searchActive}
+      // searchField={searchFieldMarkup}
+      // searchResults={searchResultsMarkup}
+      // onSearchResultsDismiss={handleSearchResultsDismiss}
       onNavigationToggle={toggleMobileNavigationActive}
     />
   );
@@ -411,7 +417,13 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
             url: '/sale',
             label: 'Sales',
             icon: CartMajor,
-            onClick: toggleModalActive,
+            // onClick: toggleModalActive,
+          },
+          {
+            url: '/ellen-wille',
+            label: 'Ellen Wille',
+            icon: LegalMajor,
+            // onClick: toggleModalActive,
           },
           {
             url: '/inventory',
@@ -610,7 +622,7 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
           skipToContentTarget={skipToContentRef.current}
         >
           {contextualSaveBarMarkup}
-          {loadingMarkup}
+          {/* {loadingMarkup} */}
         
           {toastMarkup}
           {modalMarkup}
@@ -633,7 +645,39 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
             exact
             path="/sale"
             render={props => <Sale {...props} user={state} />}
-          /> </div> 
+          /> 
+            <Route
+            exact
+            path="/inventory"
+            render={props => <Inventory {...props} user={state} />}
+          />  
+           <Route
+            exact
+            path="/marketing"
+            render={props => <Marketing {...props} user={state} />}
+          />  
+           <Route
+            exact
+            path="/new-hire"
+            render={props => <Newhire {...props} user={state} />}
+          />
+          <Route
+            exact
+            path="/accounting"
+            render={props => <Accounting {...props} user={state} />}
+          />
+            <Route
+            exact
+            path="/it"
+            render={props => <IT {...props} user={state} />}
+          />
+           <Route
+            exact
+            path="/ellen-wille"
+            render={props => <Ellen {...props} user={state} />}
+          />
+          </div> 
+          
             
         
         </Switch>

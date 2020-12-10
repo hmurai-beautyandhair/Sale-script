@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import {Link, TextStyle, Card, ResourceItem, ResourceList, Thumbnail, ButtonGroup, Icon, FormLayout, TextField,  Layout, Stack, Page, Button, Form, DisplayText} from '@shopify/polaris';
-import axios from "axios";
-import {AddMajor} from '@shopify/polaris-icons';
 import actions from "../../services/index";
 
-export default function  Sale(props) {
+export default function  Inventory(props) {
 
     const [items, setItems] = useState([])
     const [idS, setIdes] = useState([])
@@ -12,7 +10,7 @@ console.log("Props", props.user)
 
     useEffect(() => {
         const fetchData = async () => {
-          const result = await actions.list();
+          const result = await actions.listInventory();
           setItems(result.data);
            let idS = [] 
            result.data.forEach(x =>{
@@ -72,7 +70,7 @@ console.log("Props", props.user)
           setImage('')
           setDescription('')
           setLink('')
-          actions.createLink({
+          actions.createLinkInventory({
             url: link,
             title: title,
             image: image,
@@ -100,7 +98,7 @@ console.log("Props", props.user)
             setImage2('')
             setDescription2('')
             setLink2('')
-             actions.update({
+             actions.updateInventory({
                url: link2,
                title: title2,
                image: image2,
@@ -217,7 +215,7 @@ narrowWidth
 >
 <Card >
 <center>
-<div style={{textAlign: 'center', padding: '1em', color: '#006fbb'}}><DisplayText size="large" >The Sales department</DisplayText></div>
+<div style={{textAlign: 'center', padding: '1em', color: '#006fbb'}}><DisplayText size="large" >The Inventory department</DisplayText></div>
 
 </center>
 </Card>
