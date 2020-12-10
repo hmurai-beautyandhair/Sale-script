@@ -1,16 +1,17 @@
-import React, { Component } from "react";
-import actions from "../../services/index";
-import DemoCarousel from "../landing/Landing";
-import "react-responsive-carousel/lib/styles/carousel.min.css";
-
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <DemoCarousel />
-      </div>
-    );
-  }
+import React, { useState, useEffect } from "react";
+import { Page, Card, PageActions } from "@shopify/polaris";
+export default function Marketing(props) {
+  return (
+    <div>
+      <Page title="Home Page">
+        <Card title="" sectioned>
+          <ul>
+            <li>Something about LauchPad</li>
+            <li>Company's news</li>
+          </ul>
+        </Card>
+        
+      </Page>
+    </div>
+  );
 }
-
-export default Home;

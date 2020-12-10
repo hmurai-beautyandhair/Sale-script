@@ -220,6 +220,7 @@ import {AppProvider, Avatar, ActionList, Card, TextField, TextContainer, Context
   FormLayout, Modal, Frame, Layout, Loading, Navigation, Page, SkeletonBodyText, SkeletonDisplayText, SkeletonPage, Toast, TopBar, MediaCard, ButtonGroup, CalloutCard, PageActions, DisplayText, Stack} from '@shopify/polaris';
 import {CartMajor,HomeMajor, OrdersMajor, MarketingMajor,  MonerisMajor, GamesConsoleMajor, JobsMajor, LockMajor, InventoryMajor, LegalMajor} from '@shopify/polaris-icons';
 import Draft from "./components/sales/Draft";
+import Home from './components/home/Home'
 import Sale from "./components/sales/Sale";
 import Inventory from './components/inventory/Inventory'
 import IT from './components/it/IT'
@@ -327,10 +328,14 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
       ),
     [],
   );
-  const toggleIsLoading = useCallback(
-    () => setIsLoading((isLoading) => !isLoading),
-    [],
-  );
+  // const toggleIsLoading = useCallback(
+  //   () => setIsLoading((isLoading) => !isLoading),
+  //   [],
+  // );
+  const toggleIsLoading = ()=>{
+    console.log('Loading')
+    setIsLoading(true)
+  }
   const toggleModalActive = useCallback(
     () => setModalActive((modalActive) => !modalActive),
     [],
@@ -364,8 +369,8 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
       name="LaunchPad"
       detail='Beauty&amp;Hair'
       initials="L"
-      open={userMenuActive}
-      onToggle={toggleUserMenuActive}
+      // open={userMenuActive}
+      // onToggle={toggleUserMenuActive}
     />
   );
 
@@ -408,52 +413,52 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
         title="Launch Pad"
         items={[
           {
-            url: '/home',
+            url: '/',
             label: 'Home',
             icon: HomeMajor,
-           
+           onClick: toggleIsLoading
           },
           {
             url: '/sale',
             label: 'Sales',
             icon: CartMajor,
-            // onClick: toggleModalActive,
+            onClick: toggleIsLoading
           },
           {
             url: '/ellen-wille',
             label: 'Ellen Wille',
             icon: LegalMajor,
-            // onClick: toggleModalActive,
+            onClick: toggleIsLoading
           },
           {
             url: '/inventory',
             label: 'Inventory',
             icon: InventoryMajor,
-           
+            onClick: toggleIsLoading
           },
           {
             url: '/marketing',
             label: 'Marketing',
             icon: MarketingMajor,
-           
+            onClick: toggleIsLoading
           },
           {
             url: '/new-hire',
             label: 'New Hire',
             icon: JobsMajor,
-           
+            onClick: toggleIsLoading
           },
           {
             url: '/accounting',
             label: 'Accounting',
             icon:  MonerisMajor,
-           
+            onClick: toggleIsLoading
           },
           {
             url: '/it',
             label: 'IT',
             icon:  GamesConsoleMajor,
-           
+            onClick: toggleIsLoading
           },
           {
            
@@ -522,7 +527,8 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
     </SkeletonPage>
   );
 
-  const pageMarkup = isLoading ? loadingPageMarkup : actualPageMarkup;
+  const pageMarkup = isLoading ? loadingPageMarkup : null;
+
 
   const modalMarkup = (
     <Modal
@@ -622,7 +628,8 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
           skipToContentTarget={skipToContentRef.current}
         >
           {contextualSaveBarMarkup}
-          {/* {loadingMarkup} */}
+          {loadingMarkup}
+          {pageMarkup}
         
           {toastMarkup}
           {modalMarkup}
@@ -675,6 +682,11 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
             exact
             path="/ellen-wille"
             render={props => <Ellen {...props} user={state} />}
+          />
+            <Route
+            exact
+            path="/"
+            render={props => <Home {...props} user={state} />}
           />
           </div> 
           
