@@ -353,18 +353,19 @@ router.get("/track-links/:id", (req, res, next) => {
 
 router.post("/add_newlink/:id/:link_id", (req, res, next) => {
   Track.findById(req.params.id).then(result => {
-    // if(result.links.filter(x => req.params.link_id in x)) {
-    //   console.log("here")
-    // }
+    if(result.links.filter(x => req.params.link_id in x).length > 0) {
+      let index = 0;
+      result.links.filter((x, i) => {
+        if(req.params.link_id in x) index = i;
+      })
+      result.links.splice(index, 1)
+    }
 
+  result.links.unshift(req.body);
      console.log("LINKS")
       // result.links.unshift(req.body);
     
     // idS.filter((x) => _id in x)[0]?.[_id];
-    result.links.unshift(req.body);
-
-
-
     result.save()
     .then(() => res.json(req.body))
     .catch(err => res.status(400).json("Error: " + err));

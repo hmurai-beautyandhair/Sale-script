@@ -22,6 +22,7 @@ import actions from "../../services/index";
 export default function Marketing(props) {
   const [items, setItems] = useState([]);
   const [track, setTrack] = useState([]);
+  const [link_data, setLinks] = useState([]);
   const [idS, setIdes] = useState([]);
   console.log("Props", props.user);
 
@@ -36,6 +37,7 @@ export default function Marketing(props) {
       setIdes(idS);
       const result2 = await actions.getTrack(props.user._id)
       setTrack(result2.data)
+      setLinks(result2.data.links)
 
     };
 
@@ -161,25 +163,44 @@ export default function Marketing(props) {
     setIdes(newArr);
   };
   const addLink = (url, title, image, id) =>{
-      // console.log('This link', url, title, image, id)
-console.log('track', track)
-      let allLinks = track?.links
-      let send = {id: {url: url, title: title, image: image, index: 0 }}
-      console.log('send', send)
+      let send = {[id]: {url: url, title: title, image: image, index: 0 }}
+      // console.log('Array of links', allLinks, allLinks.length)
             // console.log('track', allLinks)
-            // if(track.length > 0) {
-            //   if(track?.filter(x => id in x) ){
-            //     console.log(track.filter(x => id in x)[0])
-            //   }
-            // }
-            
-            // else{
-              // let send = {id: {url: url, title: title, image: image, index: 0 }}
-              // console.log('id', track._id)
+// if(allLinks.filter(x => id in x).length > 0){
+//   console.log('Link find',  allLinks.filter(x => id in x)[0])
+// }
+      
+              if(link_data.filter(x => id in x).length > 0){
+                let ind = 0
+                link_data.filter((y, i) =>{
+                  if(id in y) {
+ind =i;
+                    return y
+                  }
+                })
+                console.log('Found', ind)
+                console.log('If')
+                console.log('Index', link_data.filter(x => id in x)[0][id].index)
+                let index = link_data.filter(x => id in x)[0][id].index
+                console.log('new index', Number(index) + 1)
+                let newLinks = [...link_data]
+                newLinks.splice(ind, 1)
+               
+                console.log(newLinks)
+                setLinks(newLinks)
+                send = {[id]: {url: url, title: title, image: image, index: Number(index) + 1 }}
+                newLinks.unshift(send)
+                actions.addObj(send, track._id, id).then((res) => {
+                  console.log(res.data);
+                });
+              }
+         
+            else{
+              console.log('Else')
               actions.addObj(send, track._id, id).then((res) => {
                 console.log(res.data);
               });
-            // } 
+            } 
   
   }
   const closeEdit = (id) => {
