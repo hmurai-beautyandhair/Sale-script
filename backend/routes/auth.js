@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/User');
+const Track = require('../models/Track.models')
 const passport = require('../config/passport');
 
 router.post('/signup', (req, res, next) => {
@@ -37,6 +38,11 @@ router.get('/profile', isAuth, (req, res, next) => {
   User.findById(req.user._id)
     .then((user) => res.status(200).json({ user }))
     .catch((err) => res.status(500).json({ err }));
+});
+router.post("/track", isAuth, (req, res, next) => {
+  Track.create(req.body).then(track => {
+   console.log('New track', track)
+  }).catch(error => res.json({ error }));
 });
 
 function isAuth(req, res, next) {

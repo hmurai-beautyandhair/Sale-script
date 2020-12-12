@@ -444,7 +444,7 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
           },
           {
             url: '/new-hire',
-            label: 'New Hire',
+            label: 'Management',
             icon: JobsMajor,
             onClick: toggleIsLoading
           },

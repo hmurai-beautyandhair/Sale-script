@@ -97,6 +97,11 @@ listEllen: async () => {
 updateEllen: async (data, id) => {
   return await service.post(`/update-list-ellen/${id}`, data);
 },
+
+
+trackLiinks: async (track) => {
+  return await service.post("/track", track);
+},
 };
 
 export default actions;

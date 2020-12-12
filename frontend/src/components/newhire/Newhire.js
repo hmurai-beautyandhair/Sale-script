@@ -246,7 +246,7 @@ export default function Marketing(props) {
                   color: "#006fbb",
                 }}
               >
-                <DisplayText size="large">Human Resources</DisplayText>
+                <DisplayText size="large">Management </DisplayText>
               </div>
             </center>
           </Card>

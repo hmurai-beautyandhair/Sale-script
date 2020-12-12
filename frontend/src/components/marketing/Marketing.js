@@ -156,6 +156,9 @@ export default function Marketing(props) {
     console.log("update", newArr[id]);
     setIdes(newArr);
   };
+  const addLink = (url, title, image, id) =>{
+      console.log('This link', url, title, image, id)
+  }
   const closeEdit = (id) => {
     console.log("ID", id);
     let newArr = [...idS];
@@ -269,7 +272,7 @@ export default function Marketing(props) {
                       <Stack.Item fill>
                         <h3>
                           <TextStyle variation="strong">
-                            <Link url={url} external>
+                            <Link onClick={()=> addLink(url, title, image, _id)} url={url} external>
                               {title}
                             </Link>
                           </TextStyle>
