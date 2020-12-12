@@ -14,10 +14,7 @@ const responseGoogle = (props) => {
     actions
       .signUp(user)
       .then(async user => {
-       
 props.setUser({ ...user.data })
-
-
  actions.trackLiinks({userId: user.data._id, links: {}}).then(async track => {
   console.log(track)
   

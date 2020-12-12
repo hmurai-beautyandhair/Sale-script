@@ -44,6 +44,16 @@ router.post("/track", isAuth, (req, res, next) => {
    console.log('New track', track)
   }).catch(error => res.json({ error }));
 });
+router.post("/track/:id", (req, res, next) => {
+  Resume.findById(req.params.id).then(result => {
+    result.education.unshift(req.body);
+    result.save((err, doc) => {
+      if (err) throw err;
+      res.json(doc);
+    });
+  });
+});
+
 
 function isAuth(req, res, next) {
   req.isAuthenticated() ? next() : res.status(401).json({ msg: 'Log in first' });

@@ -10,6 +10,7 @@ const Newhire = require('../models/NewHire.model')
 const Accounting = require('../models/Accounting.model')
 const IT = require('../models/IT.model')
 const EllenWille = require('../models/Ellen.Wille.model')
+const Track = require('../models/Track.models')
 // yesterday.setDate(yesterday.getDate() - 1)
 const date = new Date()
 console.log(new Date(yesterday.setDate(yesterday.getDate() - 1)))
@@ -326,6 +327,7 @@ router.get("/all-links-ellen", (req, res) => {
     .then(links => res.json(links))
     .catch(err => res.status(400).json("Error" + err));
 });
+
 router.post("/update-list-ellen/:id", (req, res) => {
   EllenWille.findById(req.params.id)
     .then(item => {
@@ -342,4 +344,33 @@ router.post("/update-list-ellen/:id", (req, res) => {
     })
     .catch(err => res.status(400).json("Error: " + err));
 });
+router.get("/track-links/:id", (req, res, next) => {
+  Track.find({ userId: req.params.id }).then(result => {
+    res.json(result[0]);
+  });
+});
+
+
+router.post("/add_newlink/:id/:link_id", (req, res, next) => {
+  Track.findById(req.params.id).then(result => {
+    // if(result.links.filter(x => req.params.link_id in x)) {
+    //   console.log("here")
+    // }
+
+     console.log("LINKS")
+      // result.links.unshift(req.body);
+    
+    // idS.filter((x) => _id in x)[0]?.[_id];
+    result.links.unshift(req.body);
+
+
+
+    result.save()
+    .then(() => res.json(req.body))
+    .catch(err => res.status(400).json("Error: " + err));
+  })
+  .catch(err => res.status(400).json("Error: " + err));
+});
+
+
 module.exports = router;

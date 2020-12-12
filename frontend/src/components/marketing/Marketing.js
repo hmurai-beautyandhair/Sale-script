@@ -21,6 +21,7 @@ import actions from "../../services/index";
 
 export default function Marketing(props) {
   const [items, setItems] = useState([]);
+  const [track, setTrack] = useState([]);
   const [idS, setIdes] = useState([]);
   console.log("Props", props.user);
 
@@ -33,6 +34,9 @@ export default function Marketing(props) {
         idS.push({ [x._id]: false });
       });
       setIdes(idS);
+      const result2 = await actions.getTrack(props.user._id)
+      setTrack(result2.data)
+
     };
 
     fetchData();
@@ -157,7 +161,26 @@ export default function Marketing(props) {
     setIdes(newArr);
   };
   const addLink = (url, title, image, id) =>{
-      console.log('This link', url, title, image, id)
+      // console.log('This link', url, title, image, id)
+console.log('track', track)
+      let allLinks = track?.links
+      let send = {id: {url: url, title: title, image: image, index: 0 }}
+      console.log('send', send)
+            // console.log('track', allLinks)
+            // if(track.length > 0) {
+            //   if(track?.filter(x => id in x) ){
+            //     console.log(track.filter(x => id in x)[0])
+            //   }
+            // }
+            
+            // else{
+              // let send = {id: {url: url, title: title, image: image, index: 0 }}
+              // console.log('id', track._id)
+              actions.addObj(send, track._id, id).then((res) => {
+                console.log(res.data);
+              });
+            // } 
+  
   }
   const closeEdit = (id) => {
     console.log("ID", id);
