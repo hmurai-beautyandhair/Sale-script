@@ -382,7 +382,7 @@ router.get("/recent-links/:id", (req, res, next) => {
       arr.push(Object.values(x))
     })
     let send = arr.sort((a, b) => b[0]?.index - a[0]?.index).slice(0, 5)
-    res.json(send);
+    res.json(result[0].links);
   });
 });
 
@@ -476,25 +476,25 @@ function listLabels(auth) {
 }
 
 
-function listMessages(auth) {  
-  return new Promise((resolve, reject) => {    
-    const gmail = google.gmail({version: 'v1', auth});    
-    gmail.users.messages.list(      
-      {        
-        userId: 'me',        
-        q: 'label:inbox subject:culture@wigs.com',      
-      },            (err, res) => {        
-        if (err) {                    reject(err);          
-          return console.log('The API returned an error: ' + err);       
-        } 
-        const mess = res.data;       
-        if (!res.data.messages) {  resolve([]);          
-          return console.log('No messages found');         
-        }               return console.log(res.data)     
-      }    
-    );  
-  })
-}
+// function listMessages(auth) {  
+//   return new Promise((resolve, reject) => {    
+//     const gmail = google.gmail({version: 'v1', auth});    
+//     gmail.users.messages.list(      
+//       {        
+//         userId: 'me',        
+//         q: 'label:inbox subject:culture@wigs.com',      
+//       },            (err, res) => {        
+//         if (err) {                    reject(err);          
+//           return console.log('The API returned an error: ' + err);       
+//         } 
+//         const mess = res.data;       
+//         if (!res.data.messages) {  resolve([]);          
+//           return console.log('No messages found');         
+//         }               return console.log(res.data)     
+//       }    
+//     );  
+//   })
+// }
 
 
 function getRecentEmail(auth) {
@@ -517,18 +517,18 @@ function getRecentEmail(auth) {
               return;
           }
            email = response.data
-           console.log(email.payload.parts[0].parts.data)
-
-          // console.log('auth', auth.credentials.access_token)
+          //  console.log(email.payload.parts[0].parts.data)
+console.log(email)
+          console.log('email s', email.internalDate)
             rp({
               uri: `https://www.googleapis.com/gmail/v1/users/me/messages/${message_id}?access_token=${auth.credentials.access_token}`,
               json: true
             }).then(function (response) {
               var parsedMessage = parseMessage(response);
-              console.log('PARSED', parsedMessage.textPlain);
+              // console.log('PARSED', parsedMessage.textPlain);
               router.get("/gmail", (req, res, next) => {
                 
-                  res.json(parsedMessage.textPlain);
+                  res.json({message: parsedMessage.textPlain, time: email.internalDate});
                
               });
             })
