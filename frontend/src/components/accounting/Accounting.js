@@ -22,6 +22,8 @@ import actions from "../../services/index";
 export default function Accounting(props) {
   const [items, setItems] = useState([]);
   const [idS, setIdes] = useState([]);
+  const [track, setTrack] = useState([]);
+  const [link_data, setLinks] = useState([]);
   console.log("Props", props.user);
 
   useEffect(() => {
@@ -33,6 +35,9 @@ export default function Accounting(props) {
         idS.push({ [x._id]: false });
       });
       setIdes(idS);
+      const result2 = await actions.getTrack(props.user._id);
+      setTrack(result2.data);
+      setLinks(result2.data.links);
     };
 
     fetchData();
@@ -129,6 +134,47 @@ export default function Accounting(props) {
       });
     window.location.reload();
   };
+
+  const addLink = (url, title, image, id) => {
+    let send = { [id]: { url: url, title: title, image: image, index: 0 } };
+    if (link_data.filter((x) => id in x).length > 0) {
+      let ind = 0;
+      link_data.filter((y, i) => {
+        if (id in y) {
+          ind = i;
+          return y;
+        }
+      });
+      let index = link_data.filter((x) => id in x)[0][id].index;
+      console.log("new index", Number(index) + 1);
+      let newLinks = [...link_data];
+      newLinks.splice(ind, 1);
+      
+      send = {
+        [id]: {
+          url: url,
+          title: title,
+          image: image,
+          index: Number(index) + 1,
+        },
+      };
+      newLinks.unshift(send);
+      setLinks(newLinks);
+      console.log('Links', newLinks)
+      actions.addObj(send, track._id, id).then((res) => {
+        console.log(res.data);
+      });
+    } else {
+      console.log("Else");
+      let newLinks = [...link_data];
+      newLinks.unshift(send);
+      setLinks(newLinks);
+      actions.addObj(send, track._id, id).then((res) => {
+        console.log(res.data);
+      });
+    }
+  };
+
 
   const toggleForm = () => {
     setshowForm(false);
@@ -269,7 +315,7 @@ export default function Accounting(props) {
                       <Stack.Item fill>
                         <h3>
                           <TextStyle variation="strong">
-                            <Link url={url} external>
+                            <Link url={url} external  onClick={() => addLink(url, title, image, _id)}>
                               {title}
                             </Link>
                           </TextStyle>

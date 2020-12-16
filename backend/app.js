@@ -59,6 +59,16 @@ const index = require('./routes/index');
 const auth = require('./routes/auth');
 
 
+
+
+
+
+
+
+
+
+
+
 /**CHANGE THIS**/
 app.use('/api', index);
 app.use('/api', auth);

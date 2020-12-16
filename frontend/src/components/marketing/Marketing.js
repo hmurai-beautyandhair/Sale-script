@@ -35,10 +35,9 @@ export default function Marketing(props) {
         idS.push({ [x._id]: false });
       });
       setIdes(idS);
-      const result2 = await actions.getTrack(props.user._id)
-      setTrack(result2.data)
-      setLinks(result2.data.links)
-
+      const result2 = await actions.getTrack(props.user._id);
+      setTrack(result2.data);
+      setLinks(result2.data.links);
     };
 
     fetchData();
@@ -162,47 +161,51 @@ export default function Marketing(props) {
     console.log("update", newArr[id]);
     setIdes(newArr);
   };
-  const addLink = (url, title, image, id) =>{
-      let send = {[id]: {url: url, title: title, image: image, index: 0 }}
-      // console.log('Array of links', allLinks, allLinks.length)
-            // console.log('track', allLinks)
-// if(allLinks.filter(x => id in x).length > 0){
-//   console.log('Link find',  allLinks.filter(x => id in x)[0])
-// }
+
+//----------------TRACK LINKS------------------
+  const addLink = (url, title, image, id) => {
+    let send = { [id]: { url: url, title: title, image: image, index: 0 } };
+    if (link_data.filter((x) => id in x).length > 0) {
+      let ind = 0;
+      link_data.filter((y, i) => {
+        if (id in y) {
+          ind = i;
+          return y;
+        }
+      });
+      let index = link_data.filter((x) => id in x)[0][id].index;
+      console.log("new index", Number(index) + 1);
+      let newLinks = [...link_data];
+      newLinks.splice(ind, 1);
       
-              if(link_data.filter(x => id in x).length > 0){
-                let ind = 0
-                link_data.filter((y, i) =>{
-                  if(id in y) {
-ind =i;
-                    return y
-                  }
-                })
-                console.log('Found', ind)
-                console.log('If')
-                console.log('Index', link_data.filter(x => id in x)[0][id].index)
-                let index = link_data.filter(x => id in x)[0][id].index
-                console.log('new index', Number(index) + 1)
-                let newLinks = [...link_data]
-                newLinks.splice(ind, 1)
-               
-                console.log(newLinks)
-                setLinks(newLinks)
-                send = {[id]: {url: url, title: title, image: image, index: Number(index) + 1 }}
-                newLinks.unshift(send)
-                actions.addObj(send, track._id, id).then((res) => {
-                  console.log(res.data);
-                });
-              }
-         
-            else{
-              console.log('Else')
-              actions.addObj(send, track._id, id).then((res) => {
-                console.log(res.data);
-              });
-            } 
-  
-  }
+      send = {
+        [id]: {
+          url: url,
+          title: title,
+          image: image,
+          index: Number(index) + 1,
+        },
+      };
+      newLinks.unshift(send);
+      setLinks(newLinks);
+      console.log('Links', newLinks)
+      actions.addObj(send, track._id, id).then((res) => {
+        console.log(res.data);
+      });
+    } else {
+      console.log("Else");
+      let newLinks = [...link_data];
+      newLinks.unshift(send);
+      setLinks(newLinks);
+      actions.addObj(send, track._id, id).then((res) => {
+        console.log(res.data);
+      });
+    }
+  };
+
+
+
+  //-------------------------------------------------------
   const closeEdit = (id) => {
     console.log("ID", id);
     let newArr = [...idS];
@@ -316,7 +319,11 @@ ind =i;
                       <Stack.Item fill>
                         <h3>
                           <TextStyle variation="strong">
-                            <Link onClick={()=> addLink(url, title, image, _id)} url={url} external>
+                            <Link
+                              onClick={() => addLink(url, title, image, _id)}
+                              url={url}
+                              external
+                            >
                               {title}
                             </Link>
                           </TextStyle>
