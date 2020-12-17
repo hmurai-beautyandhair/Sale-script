@@ -283,6 +283,7 @@ export default function FrameExample() {
     const fetchData = async () => {
       const state = await actions.isLoggedIn();
       setData({ ...state.data });
+     
       // const response = await actions.getRecent(_id)
       // setRecent(response)
       
@@ -472,10 +473,10 @@ setUser({ email: null, createdAt: null, updatedAt: null, _id: null }); //FIX
   );
 const barLinks =(
   <TopBar.UserMenu
-      
-       name="LaunchPad"
-       detail='Beauty&amp;Hair'
-      initials='L'
+
+       name={state.name}
+      avatar={state.imageUrl}
+      // initials='L'
        // open={userMenuActive}
      
      />
@@ -814,6 +815,7 @@ const barLinks =(
 {/* </Stack> */}
   </Card>
   </center>
+
 </Page>
 
 

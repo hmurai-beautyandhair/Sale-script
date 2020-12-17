@@ -36,8 +36,10 @@ export default function Marketing(props) {
       });
       setIdes(idS);
       const result2 = await actions.getTrack(props.user._id);
+      if(result2 !== undefined){
       setTrack(result2.data);
       setLinks(result2.data.links);
+      }
     };
 
     fetchData();
@@ -164,7 +166,9 @@ export default function Marketing(props) {
 
 //----------------TRACK LINKS------------------
   const addLink = (url, title, image, id) => {
+
     let send = { [id]: { url: url, title: title, image: image, index: 0 } };
+
     if (link_data.filter((x) => id in x).length > 0) {
       let ind = 0;
       link_data.filter((y, i) => {

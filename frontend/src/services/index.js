@@ -114,6 +114,12 @@ addObj: async (link, trackId, linkId) => {
 gmail: async () => {
   return await service.get("/gmail");
 },
+postAnnouncment: async(announcment) =>{
+  return await service.post('/new-announcment', announcment)
+},
+getAnnouncment : async () => {
+  return await service.get("/announcment");
+},
 };
 
 export default actions;

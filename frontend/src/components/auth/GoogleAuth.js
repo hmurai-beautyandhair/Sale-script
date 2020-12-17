@@ -4,7 +4,7 @@ import { GoogleLogin } from "react-google-login";
 import {Button} from '@shopify/polaris';
 
 const responseGoogle = (props) => {
-  console.log('props', props);
+  console.log('Google Response', props);
   const onResponse = (response) => {
     console.log('REspnce', response);
     const user = {
@@ -15,7 +15,7 @@ const responseGoogle = (props) => {
       .signUp(user)
       .then(async user => {
 props.setUser({ ...user.data })
- actions.trackLiinks({userId: user.data._id, links: {}}).then(async track => {
+ actions.trackLiinks({userId: user.data._id}).then(async track => {
   console.log(track)
   
 }) 

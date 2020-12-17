@@ -5,13 +5,15 @@ import {Button} from '@shopify/polaris';
 
 const responseGoogle = (props) => {
   
- 
+
   const onResponse = (response) => {
     // console.log(response);
+
     const user = {
       ...response.profileObj,
       password: response.profileObj?.googleId,
     };
+    console.log('Google ', response);
     actions
       .logIn(user)
       .then(async (user) => {

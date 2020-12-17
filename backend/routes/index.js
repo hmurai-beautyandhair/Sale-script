@@ -13,6 +13,7 @@ const Accounting = require('../models/Accounting.model')
 const IT = require('../models/IT.model')
 const EllenWille = require('../models/Ellen.Wille.model')
 const Track = require('../models/Track.models')
+const Announcment = require('../models/Announcment.model')
 // yesterday.setDate(yesterday.getDate() - 1)
 const date = new Date()
 console.log(new Date(yesterday.setDate(yesterday.getDate() - 1)))
@@ -384,6 +385,28 @@ router.get("/recent-links/:id", (req, res, next) => {
     let send = arr.sort((a, b) => b[0]?.index - a[0]?.index).slice(0, 5)
     res.json(result[0].links);
   });
+});
+
+//--------------------Announcment--------------------------
+
+router.post("/new-announcment", (req, res) => {
+  const name = req.body.name;
+  const description = req.body.description;
+
+  const newAnnouncment = new Announcment({
+   name,
+    description
+  });
+
+  newAnnouncment
+    .save()
+    .then(() => res.json("Announcment added!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+router.get("/announcment", (req, res) => {
+  Announcment.find()
+    .then(links => res.json(links))
+    .catch(err => res.status(400).json("Error" + err));
 });
 
 
