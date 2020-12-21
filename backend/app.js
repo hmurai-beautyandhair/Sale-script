@@ -12,7 +12,7 @@ const passport = require('./config/passport');
 const port = process.env.PORT || 5000;
 
 
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/deploymentExample'
+const MONGODB_URI = process.env.MONGODB_URI 
 console.log('Connecting DB to ', MONGODB_URI)
 
 mongoose
@@ -28,7 +28,7 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000", "https://clientnetlify.netlify.app"] //Swap this with the client url 
+    origin: ["http://localhost:3000", "https://beauty-launch-pad.herokuapp.com"] //Swap this with the client url 
   })
 );
 
@@ -80,14 +80,14 @@ app.get("*", (req, res) => {
 });
 
 
-// if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === "production") {
 
-//   app.use(express.static(path.join(__dirname, '../frontend/build')))
+  app.use(express.static(path.join(__dirname, '../frontend/build')))
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-//   });
-// }
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+  });
+}
 
 
 module.exports = app;
