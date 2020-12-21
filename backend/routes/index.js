@@ -17,7 +17,7 @@ const Announcment = require('../models/Announcment.model')
 // yesterday.setDate(yesterday.getDate() - 1)
 const date = new Date()
 console.log(new Date(yesterday.setDate(yesterday.getDate() - 1)))
-// console.log(new Date(date.setHours( date.getHours() - 10 )))
+console.log('1')
 const shopify = new Shopify({
   shopName: "wigscom",
   apiKey: process.env.KEY,
