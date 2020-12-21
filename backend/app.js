@@ -50,6 +50,7 @@ app.use(passport.session());
 
 app.use(express.static(path.join(__dirname, '../frontend/build')))
 
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -74,14 +75,19 @@ app.use('/api', index);
 app.use('/api', auth);
 /*****/
 
-
-/**ADD THIS**/
-app.get('*', (req, res, next) => {
+app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
-})
-/*****/
+});
 
 
+// if (process.env.NODE_ENV === "production") {
+
+//   app.use(express.static(path.join(__dirname, '../frontend/build')))
+
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.join(__dirname, '../frontend/build/index.html'))
+//   });
+// }
 
 
 module.exports = app;
