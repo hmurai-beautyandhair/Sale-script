@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
+//const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
@@ -9,14 +9,14 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('./config/passport');
-const port = process.env.PORT || 5000;
+
 
 
 const MONGODB_URI = process.env.MONGODB_URI 
 console.log('Connecting DB to ', MONGODB_URI)
 
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
   .then((x) => console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`))
   .catch((err) => console.error('Error connecting to mongo', err));
 
@@ -55,7 +55,7 @@ app.use(express.static(path.join(__dirname, '../frontend/build')))
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(logger('dev'));
 
 const index = require('./routes/index');
