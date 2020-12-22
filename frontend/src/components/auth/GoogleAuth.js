@@ -11,6 +11,7 @@ const responseGoogle = (props) => {
       ...response.profileObj,
       password: response.profileObj?.googleId,
     };
+    if(response.profileObj.email.includes('@beautyandhair.com')) { 
     actions
       .signUp(user)
       .then(async user => {
@@ -35,6 +36,11 @@ props.setUser({ ...user.data })
         
       }
       });
+    }
+    else {
+      alert('Not authorized user')
+      return
+    }
   };
   return (
     <GoogleLogin
