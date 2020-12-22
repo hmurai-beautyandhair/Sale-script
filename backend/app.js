@@ -9,7 +9,7 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('./config/passport');
-
+const cookieParser = require("cookie-parser");
 
 
 const MONGODB_URI = process.env.MONGODB_URI 
@@ -28,14 +28,14 @@ const app = express();
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000", "https://beauty-launch-pad.herokuapp.com"] 
+    origin: ["http://localhost:3000", "https://beautypad.herokuapp.com"] 
   })
 );
 
 
 
 // app.use(connect.cookieParser());
-
+app.use(cookieParser());
 app.use(
   session({
     proxy: true,
