@@ -35,12 +35,14 @@ app.use(
 
 
 
+
 app.use(
   session({
+    proxy: true,
     resave: false,
     saveUninitialized: true,
     secret: "secret",
-    cookie: { maxAge: 1000 * 60 * 60 }
+    cookie: { maxAge: 1000 * 60 * 60 } //sameSite: false,
   })
 );
 
