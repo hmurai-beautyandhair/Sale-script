@@ -9,7 +9,7 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('./config/passport');
-const cookieParser = require("cookie-parser");
+
 
 
 const MONGODB_URI = process.env.MONGODB_URI 
