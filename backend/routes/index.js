@@ -381,7 +381,7 @@ router.get("/recent-links/:id", (req, res, next) => {
     let arr = []
     if(result) {
       if(result.length > 0) {
-        if(result[0]?.links ) {
+        if(links in result[0] ) {
     result[0]?.links?.map(x =>{
       arr.push(Object.values(x))
     })
