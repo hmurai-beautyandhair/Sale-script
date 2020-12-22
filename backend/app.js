@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const bodyParser = require('body-parser');
-//const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 const express = require('express');
 const mongoose = require('mongoose');
 const logger = require('morgan');
@@ -9,7 +9,7 @@ const path = require('path');
 const cors = require('cors');
 const session = require('express-session');
 const passport = require('./config/passport');
-var MemoryStore = require('memorystore')(session)
+
 
 
 const MONGODB_URI = process.env.MONGODB_URI 
@@ -34,27 +34,19 @@ app.use(
 
 
 
+app.use(connect.cookieParser());
+
+app.use(
+  session({
+    proxy: true,
+    resave: false,
+    saveUninitialized: true,
+    secret: "secret",
+    cookie: { maxAge: 1000 * 60 * 60 } //sameSite: false,
+  })
+);
 
 
-// app.use(
-//   session({
-//     proxy: true,
-//     resave: false,
-//     saveUninitialized: true,
-//     secret: "secret",
-//     cookie: { maxAge: 1000 * 60 * 60 } //sameSite: false,
-//   })
-// );
-
-
-app.use(session({
-  cookie: { maxAge: 86400000 },
-  store: new MemoryStore({
-    checkPeriod: 86400000 // prune expired entries every 24h
-  }),
-  resave: false,
-  secret: 'keyboard cat'
-}))
 
 app.use(passport.initialize());
 app.use(passport.session());

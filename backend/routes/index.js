@@ -379,11 +379,13 @@ router.post("/add_newlink/:id/:link_id", (req, res, next) => {
 router.get("/recent-links/:id", (req, res, next) => {
   Track.find({ userId: req.params.id }).then(result => {
     let arr = []
-    result[0].links?.forEach(x =>{
+    if(result) {
+    result[0].links?.map(x =>{
       arr.push(Object.values(x))
     })
     let send = arr.sort((a, b) => b[0]?.index - a[0]?.index).slice(0, 5)
     res.json(result[0].links);
+  }
   });
 });
 
