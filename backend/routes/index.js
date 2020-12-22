@@ -383,8 +383,8 @@ router.get("/recent-links/:id", (req, res, next) => {
       if(result.length > 0) {
         if(links in result[0] ) {
           if(result[0].links) {
-            if(result[0]?.links.length > 0) {
-    result[0]?.links?.map(x =>{
+            if(result[0].links.length > 0) {
+    result[0].links.map(x =>{
       arr.push(Object.values(x))
     })
     let send = arr.sort((a, b) => b[0]?.index - a[0]?.index).slice(0, 5)
