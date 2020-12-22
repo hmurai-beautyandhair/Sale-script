@@ -36,17 +36,27 @@ app.use(
 
 // app.use(connect.cookieParser());
 app.use(cookieParser());
-app.use(
-  session({
-    proxy: true,
-    resave: false,
-    saveUninitialized: true,
-    secret: "secret",
-    cookie: { maxAge: 1000 * 60 * 60 } //sameSite: false,
-  })
-);
+// app.use(
+//   session({
+//     proxy: true,
+//     resave: false,
+//     saveUninitialized: true,
+//     secret: "secret",
+//     cookie: { maxAge: 1000 * 60 * 60 } //sameSite: false,
+//   })
+// );
 
+var sess = {
+  secret: 'keyboard cat',
+  cookie: {}
+}
 
+if (app.get('env') === 'production') {
+  app.set('trust proxy', 1) // trust first proxy
+  sess.cookie.secure = true // serve secure cookies
+}
+
+app.use(session(sess))
 
 app.use(passport.initialize());
 app.use(passport.session());
