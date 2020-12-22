@@ -21,7 +21,9 @@
   "dependencies": {
     "@shopify/polaris": "^5.11.0",
     "bootstrap": "^4.5.3",
+    "express-session": "^1.17.1",
     "googleapis": "^39.2.0",
+    "memorystore": "^1.6.4",
     "react-bootstrap": "^1.4.0"
   }
 }
