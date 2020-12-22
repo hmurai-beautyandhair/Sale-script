@@ -34,7 +34,7 @@ app.use(
 
 
 
-app.use(connect.cookieParser());
+// app.use(connect.cookieParser());
 
 app.use(
   session({
