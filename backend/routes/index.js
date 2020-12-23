@@ -543,28 +543,27 @@ function getRecentEmail(auth) {
               return;
           }
            email = response.data
-          //  console.log(email.payload.parts[0].parts.data)
+          
+   console.log(email.payload.parts[1])
 console.log(email)
-          console.log('email s', email.internalDate)
+          // console.log('email s', email.internalDate)
             rp({
               uri: `https://www.googleapis.com/gmail/v1/users/me/messages/${message_id}?access_token=${auth.credentials.access_token}`,
               json: true
             }).then(function (response) {
               var parsedMessage = parseMessage(response);
-              // console.log('PARSED', parsedMessage.textPlain);
+          console.log('PARSED', parsedMessage.headers.subject)
+    
+     newSrc = "data:" + "image/jpeg" + ";" + "base64" + "," + parsedMessage.attachments[1].attachmentId.replace(/-/g, `+`).replace(/_/g, `/`)
+    //  console.log('new src', newSrc)
+// thisImg.attr({"src":newSrc});
+          // console.log('PARSED', parsedMessage.attachments[0].headers);
               router.get("/gmail", (req, res, next) => {
-                
-                  res.json({message: parsedMessage.textPlain, time: email.internalDate});
+               
+                  res.json({message: parsedMessage.textPlain, time: email.internalDate, subject: parsedMessage.headers.subject});
                
               });
             })
-   
-           
-//          let base64string = response?.data?.raw
-// let bufferObj = Buffer.from(base64string, "base64"); 
-// let decodedString = bufferObj.toString("utf8"); 
-// console.log("The decoded string:", decodedString); 
-//console.log('"' + data + '" converted from Base64 to ASCII is "' + text + '"');
    
       });
   }); }

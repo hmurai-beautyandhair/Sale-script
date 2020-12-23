@@ -15,7 +15,10 @@ export default function Home(props) {
   const [description, setDescription] = useState("");
   const [announcment, setAnnouncment] = useState([])
   let [text, setText] = useState('')
+  let [subject, setSubject] = useState('')
   const today = new Date()
+  const options = { month: "long", day: "numeric", year: 'numeric' };
+
 
 
   useEffect(() => {
@@ -38,8 +41,12 @@ result.data.forEach(x =>{
   }
 const gmail = await actions.gmail()
 let new_date = new Date(Number(gmail.data.time))
-
-setDate(new_date.toUTCString())
+let sub = await actions.gmail();
+console.log('sub', sub)
+if(sub.data.subject) {
+setSubject(sub.data.subject)
+}
+setDate(new_date.toLocaleDateString("en-US", options))
 
 let str = gmail.data.message.replace(/[@]|[*]/g, '')
  str = `${str}`
@@ -47,7 +54,7 @@ let str = gmail.data.message.replace(/[@]|[*]/g, '')
 
 // setGmail(str.replace(/\s{,5}/g, '').trim())
 
-setGmail(((str.replace(/\s{15,}/g, '<br/><br /><br />')).replace(/\s{6,}/g, '<br /><br />')).replace(/\s{2,}/g, '<br />'))
+setGmail(((str.replace(/\s{15,}/g, '<br/><br /><br />')).replace(/\s{8,}/g, '<br /><br />')).replace(/\s{2,}/g, '<br />'))
 const ann = await actions.getAnnouncment()
 if(ann.data.length > 0) {
 
@@ -205,8 +212,8 @@ const res = (<Data/>)
     <div>
       <Page >
         <Card title="Quick Access" sectioned>
-           <center><div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'spaceEvenly', alignItems: 'center'}}>{res}</div></center>
-          
+    
+          <center><div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'spaceEvenly', alignItems: 'center'}}>{res}</div></center>
 
         </Card>
         <Card title='Announcements' sectioned>
@@ -215,9 +222,14 @@ const res = (<Data/>)
         {pageMarkup}
         </Card>
 
-        <Card  title="Culture Club News" sectioned actions={[{content: `${date}`}]}>
-        <div dangerouslySetInnerHTML={{__html: gmail}} />
-
+        <Card  title="Culture Club News" sectioned >
+        <h1 style={{fontSize: '1.1em'}}><strong>Date:</strong> {date}</h1>
+  <h1 style={{fontSize: '1.1em'}}><strong>Subject:</strong> {subject}</h1>
+        <Card.Section>
+        <center><div dangerouslySetInnerHTML={{__html: gmail}} /></center>
+        </Card.Section>
+        
+  
   </Card>
 
       </Page>
